@@ -4,27 +4,7 @@ from groq import Groq
 from dotenv import load_dotenv
 from streamlit_mic_recorder import speech_to_text
 import streamlit.components.v1 as components 
-st.markdown("""
-<style>
-/* This targets the mic button inside our custom div */
-#mic-container button {
-    background-color: white; 
-    border-radius: 50%;
-    border: 2px solid #000000;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    transition: background-color 0.3s ease;
-}
-/* This targets the mic button when it is recording */
-#mic-container button[title*="Recording"] {
-    background-color: skyblue;
-}
-</style>
-""", unsafe_allow_html=True)
+
 
 load_dotenv()
 
@@ -86,9 +66,7 @@ st.caption("Use the mic button to speak your query. Responses will be spoken bac
 if "history" not in st.session_state:
     st.session_state.history = []
     
-st.markdown("<div id='mic-container'>", unsafe_allow_html=True)
 user_input = speech_to_text(language='en', start_prompt="🎙️ Start Recording", stop_prompt="⏹️ Stop Recording", just_once=True, key='stt_mic')
-st.markdown("</div>", unsafe_allow_html=True)
 
 if user_input:
     
@@ -158,6 +136,7 @@ for i, entry in enumerate(st.session_state.history):
         with st.chat_message("assistant"): 
 
             st.markdown(entry["response"])
+
 
 
 
