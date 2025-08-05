@@ -106,7 +106,7 @@ if user_input:
             <script>
                 if ('speechSynthesis' in window) {{
                     const utterance = new SpeechSynthesisUtterance(`{response.replace("`", "")}`);
-                    utterance.lang = 'en-US';
+                    utterance.lang = 'en-IN';
                     window.speechSynthesis.speak(utterance);
                 }} else {{
                     console.error('Text-to-speech not supported in this browser.');
@@ -135,3 +135,4 @@ for i, entry in enumerate(st.session_state.history):
         with st.chat_message("assistant"): 
 
             st.markdown(entry["response"])
+
