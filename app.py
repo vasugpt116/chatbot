@@ -4,32 +4,34 @@ from groq import Groq
 from dotenv import load_dotenv
 from streamlit_mic_recorder import speech_to_text
 import streamlit.components.v1 as components 
-
-load_dotenv()
-
 st.markdown("""
 <style>
 /* Base style for the mic button */
-.stButton>button {
-    background-color: white; /* White background */
-    border-radius: 50%; /* Makes the button round */
-    border: 2px solid #000000; /* Optional: adds a black border */
-    color: black; /* Text color */
-    width: 60px; /* Adjust button size as needed */
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Optional: adds a subtle shadow */
-    transition: background-color 0.3s ease; /* Smooth color transition */
+.stMicRecorder button {
+    background-color: white !important; /* White background */
+    border-radius: 50% !important; /* Makes the button round */
+    border: 2px solid #000000 !important; /* Adds a black border */
+    color: black !important; /* Text color */
+    width: 60px !important; /* Adjust button size */
+    height: 60px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2) !important; /* Subtle shadow */
+    transition: background-color 0.3s ease !important; /* Smooth transition */
 }
 
 /* Style when the button is actively recording */
-.stButton>button[data-testid="stMicRecorder"] {
-    background-color: skyblue; /* Changes background to skyblue when active */
+.stMicRecorder .st-bd button {
+    background-color: skyblue !important; /* Changes background to skyblue when active */
 }
 </style>
 """, unsafe_allow_html=True)
+
+
+load_dotenv()
+
+
 
 groq_api_key = st.secrets["GROQ_API_KEY"]  
 if not groq_api_key:
@@ -157,6 +159,7 @@ for i, entry in enumerate(st.session_state.history):
         with st.chat_message("assistant"): 
 
             st.markdown(entry["response"])
+
 
 
 
