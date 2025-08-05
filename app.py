@@ -58,7 +58,7 @@ model = 'Llama3-8b-8192'
 client = Groq(api_key=groq_api_key) 
 
 st.title("💬 Chat with Vasu") 
-st.caption("Hey team! I'm really excited to introduce you to my new chatbot, Chat-Vasu. I've been working on it to act as a digital assistant that can handle some of my routine tasks and answer common questions, essentially acting as a 'mini-me ") 
+st.caption("Hey team! I'm really excited to introduce you to my new chatbot, Chat with Vasu. I've been working on it to act as a digital assistant that can handle some of my routine tasks and answer common questions, essentially acting as a 'mini-me.'") 
 st.caption("Use the mic button to speak your query. Responses will be spoken back.")
 
 
@@ -136,6 +136,7 @@ for i, entry in enumerate(st.session_state.history):
         with st.chat_message("assistant"): 
 
             st.markdown(entry["response"])
+
 
 
 
