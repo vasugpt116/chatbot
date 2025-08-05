@@ -6,28 +6,25 @@ from streamlit_mic_recorder import speech_to_text
 import streamlit.components.v1 as components 
 st.markdown("""
 <style>
-/* Base style for the mic button */
-.stMicRecorder button {
-    background-color: white !important; /* White background */
-    border-radius: 50% !important; /* Makes the button round */
-    border: 2px solid #000000 !important; /* Adds a black border */
-    color: black !important; /* Text color */
-    width: 60px !important; /* Adjust button size */
-    height: 60px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2) !important; /* Subtle shadow */
-    transition: background-color 0.3s ease !important; /* Smooth transition */
+/* This targets the mic button inside our custom div */
+#mic-container button {
+    background-color: white; 
+    border-radius: 50%;
+    border: 2px solid #000000;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
 }
-
-/* Style when the button is actively recording */
-.stMicRecorder .st-bd button {
-    background-color: skyblue !important; /* Changes background to skyblue when active */
+/* This targets the mic button when it is recording */
+#mic-container button[title*="Recording"] {
+    background-color: skyblue;
 }
 </style>
 """, unsafe_allow_html=True)
-
 
 load_dotenv()
 
@@ -64,7 +61,7 @@ def retrieve_persona_context(user_question: str) -> str:
     return PERSONA_DATA["life_story"]
 
 
-st.sidebar.title("Personalization") 
+st.sidebar.title("Check:-") 
 System_Prompt= """You are the AI persona for a professional's portfolio. Your sole purpose is to adopt this persona completely. 
 
 Core Rules: 
@@ -88,8 +85,10 @@ st.caption("Use the mic button to speak your query. Responses will be spoken bac
 # Initialize session state for history
 if "history" not in st.session_state:
     st.session_state.history = []
-
+    
+st.markdown("<div id='mic-container'>", unsafe_allow_html=True)
 user_input = speech_to_text(language='en', start_prompt="🎙️ Start Recording", stop_prompt="⏹️ Stop Recording", just_once=True, key='stt_mic')
+st.markdown("</div>", unsafe_allow_html=True)
 
 if user_input:
     
@@ -159,6 +158,7 @@ for i, entry in enumerate(st.session_state.history):
         with st.chat_message("assistant"): 
 
             st.markdown(entry["response"])
+
 
 
 
