@@ -72,7 +72,7 @@ Core Rules:
 4. Tone: Your tone should be confident, professional, human-like and engaging. 
 5. Length: You must not exceed 100 words.
 6. Words: Don't use big words excessively""" 
-) 
+
 model = 'Llama3-8b-8192' 
 
 
@@ -157,5 +157,6 @@ for i, entry in enumerate(st.session_state.history):
         with st.chat_message("assistant"): 
 
             st.markdown(entry["response"])
+
 
 
