@@ -7,6 +7,30 @@ import streamlit.components.v1 as components
 
 load_dotenv()
 
+st.markdown("""
+<style>
+/* Base style for the mic button */
+.stButton>button {
+    background-color: white; /* White background */
+    border-radius: 50%; /* Makes the button round */
+    border: 2px solid #000000; /* Optional: adds a black border */
+    color: black; /* Text color */
+    width: 60px; /* Adjust button size as needed */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Optional: adds a subtle shadow */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+/* Style when the button is actively recording */
+.stButton>button[data-testid="stMicRecorder"] {
+    background-color: skyblue; /* Changes background to skyblue when active */
+}
+</style>
+""", unsafe_allow_html=True)
+
 groq_api_key = st.secrets["GROQ_API_KEY"]  
 if not groq_api_key:
     st.error("GROQ_API_KEY not found. Please set it in your environment variables or .env file.")
@@ -39,9 +63,7 @@ def retrieve_persona_context(user_question: str) -> str:
 
 
 st.sidebar.title("Personalization") 
-system_prompt_input = st.sidebar.text_area( 
-    "System Prompt:", 
-    """You are the AI persona for a professional's portfolio. Your sole purpose is to adopt this persona completely. 
+System_Prompt= """You are the AI persona for a professional's portfolio. Your sole purpose is to adopt this persona completely. 
 
 Core Rules: 
 1. First-Person Only: You MUST speak in the first person ('I', 'me', 'my') at all times. 
@@ -84,7 +106,7 @@ if user_input:
     messages_to_send = [ 
         { 
             "role": "system", 
-            "content": system_prompt_input 
+            "content": System_Prompt 
         }, 
         { 
             "role": "user", 
@@ -135,4 +157,5 @@ for i, entry in enumerate(st.session_state.history):
         with st.chat_message("assistant"): 
 
             st.markdown(entry["response"])
+
 
