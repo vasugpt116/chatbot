@@ -8,7 +8,6 @@ anaconda-project==0.8.3
 annotated-types==0.7.0
 anyio==4.5.2
 argh==0.26.2
-argon2-cffi @ file:///C:/ci/argon2-cffi_1596828585465/work
 asgiref==3.4.1
 asn1crypto @ file:///tmp/build/80754af9/asn1crypto_1596577642040/work
 astroid @ file:///C:/ci/astroid_1592487315634/work
@@ -325,4 +324,5 @@ zict==2.0.0
 zipp @ file:///tmp/build/80754af9/zipp_1604001098328/work
 zope.event==4.5.0
 zope.interface @ file:///C:/ci/zope.interface_1602002494740/work
+
 
