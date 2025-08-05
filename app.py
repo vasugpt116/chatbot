@@ -7,7 +7,7 @@ import streamlit.components.v1 as components
 
 load_dotenv()
 
-groq_api_key = os.environ.get("GROQ_API_KEY")  
+groq_api_key = st.secrets["GROQ_API_KEY"]  
 if not groq_api_key:
     st.error("GROQ_API_KEY not found. Please set it in your environment variables or .env file.")
     st.stop()
@@ -133,4 +133,5 @@ for i, entry in enumerate(st.session_state.history):
         with st.chat_message("user"): 
             st.markdown(entry["query"]) 
         with st.chat_message("assistant"): 
+
             st.markdown(entry["response"])
