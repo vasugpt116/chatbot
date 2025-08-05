@@ -208,7 +208,7 @@ pylibsrtp==0.10.0
 pylint @ file:///C:/ci/pylint_1598617153160/work
 PyMsgBox==1.0.9
 PyNaCl @ file:///C:/ci/pynacl_1595000047588/work
-pyodbc===4.0.0-unsupported
+pyodbc===4.0.0
 pyopenssl==25.1.0
 pyparsing==2.4.7
 pyperclip==1.8.2
@@ -325,3 +325,4 @@ zict==2.0.0
 zipp @ file:///tmp/build/80754af9/zipp_1604001098328/work
 zope.event==4.5.0
 zope.interface @ file:///C:/ci/zope.interface_1602002494740/work
+
